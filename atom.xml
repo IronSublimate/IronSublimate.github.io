@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>IronSublimate</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://github.io/IronSublimate/"/>
+  <updated>2020-06-30T04:05:02.795Z</updated>
+  <id>http://github.io/IronSublimate/</id>
+  
+  <author>
+    <name>侯宇轩</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>重定向printf</title>
+    <link href="http://github.io/IronSublimate/2020/06/29/24907/"/>
+    <id>http://github.io/IronSublimate/2020/06/29/24907/</id>
+    <published>2020-06-29T08:21:21.790Z</published>
+    <updated>2020-06-30T04:05:02.795Z</updated>
+    
+    <content type="html"><![CDATA[<!-- build time:Tue Jun 30 2020 12:09:07 GMT+0800 (中国标准时间) --><h1 id="重定向printf"><a href="#重定向printf" class="headerlink" title="重定向printf"></a>重定向printf</h1><h2 id="方法一-通用方法"><a href="#方法一-通用方法" class="headerlink" title="方法一 通用方法"></a>方法一 通用方法</h2><p>可以用于iar,keil等编译器</p><ol><li>在工程中任意源文件中定义fputc</li></ol><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputc</span><span class="params">(<span class="keyword">int</span> ch, FILE *f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="comment">//这里改成向串口输出的函数</span></span><br><span class="line"><span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>之后可以用printf fprintf putchar等所有stdio的输出函数</p><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>iar keil等编译器自己实现了printf等函数，最后都是调用fputc输出<br>fputc也可以根据穿进来的FILE* 参数自己定义向哪里输出</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> FILE screen;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fputc</span><span class="params">(<span class="keyword">int</span> ch, FILE *f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"><span class="keyword">if</span>(f==<span class="built_in">stdout</span>)&#123;</span><br><span class="line"><span class="comment">//这里改成向串口输出的函数</span></span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span>(f==&amp;screen)&#123;</span><br><span class="line"><span class="comment">//这里改成向显示屏输出的函数</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line"><span class="comment">//...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>printf会向stdout输出，向其他地方输出用fprintf第一个参数指定向哪个设备输出</p><!-- rebuild by neat -->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Tue Jun 30 2020 12:09:07 GMT+0800 (中国标准时间) --&gt;&lt;h1 id=&quot;重定向printf&quot;&gt;&lt;a href=&quot;#重定向printf&quot; class=&quot;headerlink&quot; title=&quot;重定向printf&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="单片机" scheme="http://github.io/IronSublimate/categories/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+    
+      <category term="单片机" scheme="http://github.io/IronSublimate/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://github.io/IronSublimate/2020/06/29/16107/"/>
+    <id>http://github.io/IronSublimate/2020/06/29/16107/</id>
+    <published>2020-06-29T07:40:37.720Z</published>
+    <updated>2020-06-30T04:05:52.771Z</updated>
+    
+    <content type="html"><![CDATA[<!-- build time:Tue Jun 30 2020 12:09:07 GMT+0800 (中国标准时间) --><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p><!-- rebuild by neat -->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;!-- build time:Tue Jun 30 2020 12:09:07 GMT+0800 (中国标准时间) --&gt;&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="Helloworld" scheme="http://github.io/IronSublimate/categories/Helloworld/"/>
+    
+    
+  </entry>
+  
+</feed>
